@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Winner</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="winner-page-body">
+      <p class="winner"></p>
+      <button class="winner-button" onclick="newLocation()">Play Again</button>
+    </div>
+    <script>
+      let winner = sessionStorage.getItem("winner");
+      document.getElementsByClassName("winner")[0].textContent =
+        winner + " Wins ✨";
+    </script>
+    <script>
+      function newLocation() {
+        sessionStorage.setItem("winner", "None");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
