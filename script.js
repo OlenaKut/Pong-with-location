@@ -12,8 +12,8 @@ const ball = {
   radius: 8,
   positionX: canvas.width / 2 + 8,
   positionY: canvas.height / 2 + 8,
-  velocityX: 2,
-  velocityY: 2,
+  velocityX: 3,
+  velocityY: 3,
   color: "white",
 };
 
@@ -24,7 +24,7 @@ const leftPlayer = {
   positionY: canvas.height / 2 - 100 / 2,
   color: "white",
   player: "left",
-  speed: 2,
+  speed: 5,
 };
 
 const rightPlayer = {
@@ -34,7 +34,7 @@ const rightPlayer = {
   positionY: canvas.height / 2 - 100 / 2,
   color: "white",
   player: "right",
-  speed: 2,
+  speed: 5,
 };
 
 /**
@@ -44,7 +44,7 @@ const game = {
   leftScore: 0,
   rightScore: 0,
   turn: 0,
-  topScore: 2,
+  topScore: 5,
   speedIncreaseHit: 3,
 };
 
@@ -120,10 +120,8 @@ function resetBall() {
 
 function collisionTimeLag() {
   activated = false;
-  console.log("Deactivated Collision");
   setTimeout(() => {
     activated = true;
-    console.log("Ready For Collision");
   }, 1000);
 }
 
@@ -142,14 +140,12 @@ function setScore() {
 
 function gameOver() {
   if (game.leftScore === game.topScore) {
-    console.log("Left Wins");
     sessionStorage.setItem("winner", "Left");
-    window.location.href = "winner.html";
+    window.location.href = "finish.html";
     resetGame();
   } else if (game.rightScore === game.topScore) {
-    console.log("Right Wins");
     sessionStorage.setItem("winner", "Right");
-    window.location.href = "winner.html";
+    window.location.href = "finish.html";
     resetGame();
   }
 }
@@ -217,8 +213,6 @@ function updateStates() {
     ball.velocityY += 0.2;
     leftPlayer.speed += 0.2;
     rightPlayer.speed += 0.2;
-
-    console.log(ball.velocityX, leftPlayer.speed);
   }
 
   ball.positionX += ball.velocityX;
@@ -231,7 +225,6 @@ function updateStates() {
 document.addEventListener(
   "keydown",
   (event) => {
-    //var name = event.key;
     var code = event.code;
 
     if (code === "KeyS") {
@@ -253,7 +246,6 @@ document.addEventListener(
 document.addEventListener(
   "keyup",
   (event) => {
-    //var name = event.key;
     var code = event.code;
 
     if (code === "KeyS") {
